@@ -6,6 +6,7 @@ import Compare from './pages/Compare';
 import Compliance from './pages/Compliance';
 import Kiosks from './pages/Kiosks';
 import Alerts from './pages/Alerts';
+import Thresholds from './pages/Thresholds';
 import DeviceConfigurations from './pages/DeviceConfigurations';
 import WeeklyDigest from './pages/WeeklyDigest';
 import Subscriptions from './pages/Subscriptions';
@@ -24,6 +25,7 @@ function App() {
         <Route path="compliance" element={<Compliance />} />
         <Route path="kiosks" element={<Kiosks />} />
         <Route path="alerts" element={<Alerts />} />
+        <Route path="thresholds" element={<Thresholds />} />
         <Route path="device-configurations" element={<DeviceConfigurations />} />
         <Route path="weekly-digest" element={<WeeklyDigest />} />
         <Route path="subscriptions" element={<Subscriptions />} />

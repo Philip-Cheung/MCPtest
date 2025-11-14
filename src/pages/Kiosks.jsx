@@ -1,8 +1,5 @@
-export default function Kiosks() {
-  return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">Kiosks</h1>
-    </div>
-  );
-}
+import PageTemplate from '../components/PageTemplate';
 
+export default function Kiosks() {
+  return <PageTemplate title="Kiosks" />;
+}
