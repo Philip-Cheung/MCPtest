@@ -18,7 +18,9 @@ import {
 
 export function TeamSwitcher({ teams }) {
   const { isMobile } = useSidebar();
-  const [activeTeam, setActiveTeam] = React.useState(teams[0]);
+  const [activeTeam, setActiveTeam] = React.useState(
+    teams && teams.length > 0 ? teams[0] : null
+  );
 
   if (!activeTeam) return null;
 

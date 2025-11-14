@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ChevronRight } from "lucide-react";
+import { Slot } from "@radix-ui/react-slot";
 import { cn } from "../../utils/cn";
 
 const Breadcrumb = React.forwardRef(({ className, ...props }, ref) => (
@@ -16,7 +17,7 @@ const BreadcrumbList = React.forwardRef(({ className, ...props }, ref) => (
   <ol
     ref={ref}
     className={cn(
-      "flex flex-wrap items-center gap-1.5 break-words text-sm text-slate-500 sm:gap-2.5 dark:text-slate-400",
+      "flex flex-wrap items-center gap-1.5 break-words text-sm text-slate-200 sm:gap-2.5 dark:text-slate-200",
       className
     )}
     {...props}
@@ -34,10 +35,11 @@ const BreadcrumbItem = React.forwardRef(({ className, ...props }, ref) => (
 BreadcrumbItem.displayName = "BreadcrumbItem";
 
 const BreadcrumbLink = React.forwardRef(({ asChild, className, ...props }, ref) => {
+  const Comp = asChild ? Slot : "a";
   return (
-    <a
+    <Comp
       ref={ref}
-      className={cn("transition-colors hover:text-slate-950 dark:hover:text-slate-50", className)}
+      className={cn("transition-colors hover:text-white dark:hover:text-white", className)}
       {...props}
     />
   );
@@ -47,10 +49,8 @@ BreadcrumbLink.displayName = "BreadcrumbLink";
 const BreadcrumbPage = React.forwardRef(({ className, ...props }, ref) => (
   <span
     ref={ref}
-    role="link"
-    aria-disabled="true"
     aria-current="page"
-    className={cn("font-normal text-slate-950 dark:text-slate-50", className)}
+    className={cn("font-normal text-white dark:text-white", className)}
     {...props}
   />
 ));

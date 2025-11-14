@@ -39,7 +39,7 @@ const data = {
   ],
 };
 
-export function AppSidebar({ ...props }) {
+export function AppSidebar({ alertCount = 0, ...props }) {
   const monitorItems = [
     { title: "Portfolio", url: "/", icon: LayoutGrid },
     { title: "Devices", url: "/devices", icon: Laptop },
@@ -50,11 +50,11 @@ export function AppSidebar({ ...props }) {
       title: "Alerts",
       url: "/alerts",
       icon: Bell,
-      badge: (
+      badge: alertCount > 0 ? (
         <span className="ml-auto bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
-          99+
+          {alertCount > 99 ? "99+" : alertCount}
         </span>
-      ),
+      ) : undefined,
     },
   ];
 
@@ -78,8 +78,8 @@ export function AppSidebar({ ...props }) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={monitorItems} label="Monitor" />
-        <NavMain items={managementItems} label="Management" collapsible />
-        <NavMain items={adminItems} label="Admin" collapsible />
+        <NavMain items={managementItems} label="Management" collapsible sectionIcon={FolderCog} />
+        <NavMain items={adminItems} label="Admin" collapsible sectionIcon={Wrench} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

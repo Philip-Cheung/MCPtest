@@ -1,9 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 
 export function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.matchMedia('(max-width: 768px)').matches;
+    }
+    return false;
+  });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const mql = window.matchMedia('(max-width: 768px)');
     const onChange = () => {
       setIsMobile(mql.matches);
