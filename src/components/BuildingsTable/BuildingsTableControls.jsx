@@ -45,6 +45,7 @@ export function BuildingsTableControls({
               <DropdownMenuRadioItem value="all">All Buildings</DropdownMenuRadioItem>
               <DropdownMenuRadioItem value="passing">Passing</DropdownMenuRadioItem>
               <DropdownMenuRadioItem value="needs-attention">Needs Attention</DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="no-report">No Report</DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
         </DropdownMenu>

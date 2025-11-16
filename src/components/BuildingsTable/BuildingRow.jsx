@@ -2,7 +2,7 @@
  * BuildingRow - Single building row with expand/collapse functionality
  */
 import { Link } from "react-router-dom";
-import { ChevronDown, ChevronRight, Loader2 } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import { TableCell, TableRow } from "../ui/table";
 import { Badge } from "../ui/badge";
 import { IndicatorDot } from "../shared/IndicatorDot";
@@ -44,12 +44,17 @@ export function BuildingRow({ building, isExpanded, onToggle, dateRange }) {
             {building.wellCompliance === "passing" ? (
               <>
                 <span className="h-2 w-2 rounded-full bg-green-500 mr-2" />
-                Done
+                Passing
+              </>
+            ) : building.wellCompliance === "needs-attention" ? (
+              <>
+                <span className="h-2 w-2 rounded-full bg-orange-500 mr-2" />
+                Needs Attention
               </>
             ) : (
               <>
-                <Loader2 className="h-3 w-3 mr-2 animate-spin text-muted-foreground" />
-                In Process
+                <span className="h-2 w-2 rounded-full bg-gray-400 mr-2" />
+                No Report
               </>
             )}
           </Badge>
