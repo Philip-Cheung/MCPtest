@@ -18,10 +18,26 @@ export function BuildingMetricsRows({ building, dateRange = "30days" }) {
 
   return (
     <>
-      {/* Section header row aligned to parent columns */}
-      <TableRow className="hover:bg-transparent border-t border-border bg-muted/20">
+      {/* Custom separator that starts at the image edge */}
+      <TableRow className="hover:bg-transparent">
+        {/* Column 1: chevron (no stroke) */}
         <TableCell className="p-0" />
-        <TableCell className="px-4 py-2 font-semibold text-foreground">Metric</TableCell>
+        {/* Column 2: image column - start rule at the same padding as building cell */}
+        <TableCell className="p-0">
+          <div className="ml-4 border-t border-border" />
+        </TableCell>
+        {/* Columns 3-6: continue the rule */}
+        <TableCell className="p-0" colSpan={4}>
+          <div className="border-t border-border" />
+        </TableCell>
+      </TableRow>
+
+      {/* Section header row aligned to parent columns */}
+      <TableRow className="hover:bg-transparent bg-muted/20">
+        <TableCell className="p-0" />
+        <TableCell className="px-4 py-2 font-semibold text-foreground">
+          <div className="ml-[52px]">Metric</div>
+        </TableCell>
         <TableCell className="px-4 py-2 font-semibold text-foreground">Target</TableCell>
         <TableCell className="px-4 py-2 font-semibold text-foreground">% Time In Targets</TableCell>
         <TableCell className="p-0" />
