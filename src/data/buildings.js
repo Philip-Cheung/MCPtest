@@ -86,9 +86,7 @@ export const buildings = [
         { name: "Temperature", target: "20 - 26 °C", timeInTarget: 70, unit: "°C" },
       ],
     },
-    get metricsByPeriod() {
-      return generateTimeVariantMetrics(this.metrics);
-    }
+    metricsByPeriod: null, // Will be set after creation
   },
   {
     id: "2",
@@ -111,9 +109,7 @@ export const buildings = [
         { name: "Temperature", target: "20 - 26 °C", timeInTarget: 65, unit: "°C" },
       ],
     },
-    get metricsByPeriod() {
-      return generateTimeVariantMetrics(this.metrics);
-    }
+    metricsByPeriod: null, // Will be set after creation
   },
   {
     id: "3",
@@ -136,9 +132,7 @@ export const buildings = [
         { name: "Temperature", target: "20 - 26 °C", timeInTarget: 89, unit: "°C" },
       ],
     },
-    get metricsByPeriod() {
-      return generateTimeVariantMetrics(this.metrics);
-    }
+    metricsByPeriod: null, // Will be set after creation
   },
   {
     id: "4",
@@ -161,9 +155,7 @@ export const buildings = [
         { name: "Temperature", target: "20 - 26 °C", timeInTarget: 50, unit: "°C" },
       ],
     },
-    get metricsByPeriod() {
-      return generateTimeVariantMetrics(this.metrics);
-    }
+    metricsByPeriod: null, // Will be set after creation
   },
   {
     id: "5",
@@ -186,9 +178,7 @@ export const buildings = [
         { name: "Temperature", target: "20 - 26 °C", timeInTarget: 80, unit: "°C" },
       ],
     },
-    get metricsByPeriod() {
-      return generateTimeVariantMetrics(this.metrics);
-    }
+    metricsByPeriod: null, // Will be set after creation
   },
   {
     id: "6",
@@ -211,9 +201,7 @@ export const buildings = [
         { name: "Temperature", target: "20 - 26 °C", timeInTarget: 41, unit: "°C" },
       ],
     },
-    get metricsByPeriod() {
-      return generateTimeVariantMetrics(this.metrics);
-    }
+    metricsByPeriod: null, // Will be set after creation
   },
   {
     id: "7",
@@ -236,9 +224,7 @@ export const buildings = [
         { name: "Temperature", target: "20 - 26 °C", timeInTarget: 26, unit: "°C" },
       ],
     },
-    get metricsByPeriod() {
-      return generateTimeVariantMetrics(this.metrics);
-    }
+    metricsByPeriod: null, // Will be set after creation
   },
   {
     id: "8",
@@ -261,9 +247,7 @@ export const buildings = [
         { name: "Temperature", target: "20 - 26 °C", timeInTarget: 87, unit: "°C" },
       ],
     },
-    get metricsByPeriod() {
-      return generateTimeVariantMetrics(this.metrics);
-    }
+    metricsByPeriod: null, // Will be set after creation
   },
   {
     id: "9",
@@ -286,9 +270,7 @@ export const buildings = [
         { name: "Temperature", target: "20 - 26 °C", timeInTarget: 83, unit: "°C" },
       ],
     },
-    get metricsByPeriod() {
-      return generateTimeVariantMetrics(this.metrics);
-    }
+    metricsByPeriod: null, // Will be set after creation
   },
   {
     id: "10",
@@ -311,9 +293,14 @@ export const buildings = [
         { name: "Temperature", target: "20 - 26 °C", timeInTarget: 96, unit: "°C" },
       ],
     },
-    get metricsByPeriod() {
-      return generateTimeVariantMetrics(this.metrics);
-    }
+    metricsByPeriod: null, // Will be set after creation
   },
 ];
+
+// Populate metricsByPeriod for all buildings after creation
+buildings.forEach(building => {
+  if (building.metrics) {
+    building.metricsByPeriod = generateTimeVariantMetrics(building.metrics);
+  }
+});
 
