@@ -69,7 +69,7 @@ export function BuildingRow({ building, isExpanded, onToggle, dateRange }) {
         {isExpanded && (
           <TableRow className="hover:bg-transparent border-b border-border">
             <TableCell colSpan={6} className="bg-muted/20 p-0">
-              <div className="px-6 py-4">
+              <div className="px-4 py-4">
                 <BuildingMetricsTable building={building} dateRange={dateRange} />
               </div>
             </TableCell>
