@@ -11,7 +11,12 @@ import {
 } from "../ui/table";
 import { IndicatorDot } from "../shared/IndicatorDot";
 
-export function BuildingMetricsTable({ building }) {
+export function BuildingMetricsTable({ building, dateRange = "30days" }) {
+  // Use time-variant metrics if available, otherwise fall back to base metrics
+  const metrics = building.metricsByPeriod && building.metricsByPeriod[dateRange] 
+    ? building.metricsByPeriod[dateRange] 
+    : building.metrics;
+
   return (
     <Table>
       <TableHeader>
@@ -22,7 +27,7 @@ export function BuildingMetricsTable({ building }) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {building.metrics.airQuality.map((metric) => (
+        {metrics.airQuality.map((metric) => (
           <TableRow key={metric.name} className="hover:bg-transparent">
             <TableCell className="px-4 py-2">
               <div>
@@ -40,7 +45,7 @@ export function BuildingMetricsTable({ building }) {
             </TableCell>
           </TableRow>
         ))}
-        {building.metrics.thermalComfort.map((metric) => (
+        {metrics.thermalComfort.map((metric) => (
           <TableRow key={metric.name} className="hover:bg-transparent">
             <TableCell className="px-4 py-2">
               <div>
