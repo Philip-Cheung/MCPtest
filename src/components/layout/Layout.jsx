@@ -11,26 +11,11 @@ import {
   BreadcrumbSeparator,
 } from '../ui/breadcrumb';
 import ThemeToggle from '../ThemeToggle';
-
-const routeLabels = {
-  '/': 'Portfolio',
-  '/devices': 'Devices',
-  '/compare': 'Compare',
-  '/compliance': 'Compliance',
-  '/kiosks': 'Kiosks',
-  '/alerts': 'Alerts',
-  '/thresholds': 'Thresholds',
-  '/device-configurations': 'Device Configurations',
-  '/weekly-digest': 'Weekly Digest',
-  '/subscriptions': 'Subscriptions',
-  '/building-settings': 'Building Settings',
-  '/user-management': 'User Management',
-  '/organization': 'Organization',
-};
+import { ROUTE_LABELS } from '../../config/routes';
 
 export default function Layout() {
   const location = useLocation();
-  const currentPageLabel = routeLabels[location.pathname] || 'Page';
+  const currentPageLabel = ROUTE_LABELS[location.pathname] || 'Page';
 
   return (
     <SidebarProvider>
