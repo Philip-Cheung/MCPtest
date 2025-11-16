@@ -6,7 +6,7 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 import { TableCell, TableRow } from "../ui/table";
 import { Badge } from "../ui/badge";
 import { IndicatorDot } from "../shared/IndicatorDot";
-import { BuildingMetricsTable } from "./BuildingMetricsTable";
+import { BuildingMetricsRows } from "./BuildingMetricsRows";
 
 export function BuildingRow({ building, isExpanded, onToggle, dateRange }) {
   return (
@@ -67,13 +67,13 @@ export function BuildingRow({ building, isExpanded, onToggle, dateRange }) {
         </TableCell>
       </TableRow>
         {isExpanded && (
-          <TableRow className="hover:bg-transparent border-b border-border">
-            <TableCell colSpan={6} className="bg-muted/20 p-0">
-              <div className="px-4 py-4">
-                <BuildingMetricsTable building={building} dateRange={dateRange} />
-              </div>
-            </TableCell>
-          </TableRow>
+          <>
+            {/* Optional thin divider row to visually separate the section */}
+            <TableRow className="hover:bg-transparent">
+              <TableCell colSpan={6} className="p-0" />
+            </TableRow>
+            <BuildingMetricsRows building={building} dateRange={dateRange} />
+          </>
         )}
     </>
   );
