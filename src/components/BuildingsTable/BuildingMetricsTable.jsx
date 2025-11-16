@@ -18,12 +18,14 @@ export function BuildingMetricsTable({ building, dateRange = "30days" }) {
   return (
     <div className="w-full">
       {/* Header row - aligns with parent table columns */}
-      <div className="grid grid-cols-[40px_1fr_auto_1fr_auto_auto] gap-4 border-b border-border pb-2 mb-2">
+      <div className="grid grid-cols-[40px_40px_1fr_auto_1fr_auto_auto] gap-4 border-b border-border pb-2 mb-2">
         <div></div> {/* Chevron column spacer */}
+        <div></div> {/* Building image spacer */}
         <div className="px-4 font-semibold text-foreground">Metric</div>
-        <div></div> {/* Spaces column spacer */}
         <div className="px-4 font-semibold text-foreground">Target</div>
-        <div className="px-4 font-semibold text-foreground col-span-2">% Time In Targets</div>
+        <div className="px-4 font-semibold text-foreground">% Time In Targets</div>
+        <div></div> {/* Air Quality column spacer */}
+        <div></div> {/* Thermal Comfort column spacer */}
       </div>
       
       {/* Metric rows - align with parent table columns */}
@@ -31,18 +33,20 @@ export function BuildingMetricsTable({ building, dateRange = "30days" }) {
         {allMetrics.map((metric) => (
           <div 
             key={`${metric.category}-${metric.name}`}
-            className="grid grid-cols-[40px_1fr_auto_1fr_auto_auto] gap-4 py-2 hover:bg-muted/30 rounded"
+            className="grid grid-cols-[40px_40px_1fr_auto_1fr_auto_auto] gap-4 py-2 hover:bg-muted/30 rounded"
           >
             <div></div> {/* Chevron column spacer */}
+            <div></div> {/* Building image spacer */}
             <div className="px-4">
               <div className="font-medium text-foreground">{metric.name}</div>
               <div className="text-xs text-muted-foreground">{metric.category}</div>
             </div>
-            <div></div> {/* Spaces column spacer */}
-            <div className="px-4 text-foreground">{metric.target}</div>
-            <div className="px-4 col-span-2">
+            <div className="px-4 text-foreground text-left">{metric.target}</div>
+            <div className="px-4">
               <IndicatorDot value={metric.timeInTarget} />
             </div>
+            <div></div> {/* Air Quality column spacer */}
+            <div></div> {/* Thermal Comfort column spacer */}
           </div>
         ))}
       </div>
