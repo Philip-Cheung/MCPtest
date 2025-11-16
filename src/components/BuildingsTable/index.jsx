@@ -25,8 +25,7 @@ export function BuildingsTable() {
 
   // Apply time-variant data based on selected date range
   const buildingsWithTimeData = useMemo(() => {
-    console.log('Total buildings:', buildings.length);
-    const result = buildings.map(building => {
+    return buildings.map(building => {
       if (building.dataByPeriod && building.dataByPeriod[dateRange]) {
         const periodData = building.dataByPeriod[dateRange];
         return {
@@ -37,15 +36,11 @@ export function BuildingsTable() {
       }
       return building;
     });
-    console.log('Buildings with time data:', result.length);
-    return result;
   }, [dateRange]);
 
   // Apply filters
   const filteredData = useMemo(() => {
-    const result = filterBuildings(buildingsWithTimeData, filters, searchQuery, dateRangeValue);
-    console.log('Filtered data:', result.length);
-    return result;
+    return filterBuildings(buildingsWithTimeData, filters, searchQuery, dateRangeValue);
   }, [buildingsWithTimeData, searchQuery, filters, dateRangeValue]);
 
   // Use pagination hook
@@ -68,9 +63,6 @@ export function BuildingsTable() {
     updateFilter('wellCompliance', value);
     setCurrentPage(1);
   };
-
-  console.log('Paginated items:', paginatedData.items.length, 'of', paginatedData.totalItems);
-  console.log('Current page:', currentPage, 'Items per page:', itemsPerPage);
 
   return (
     <div className="space-y-4">

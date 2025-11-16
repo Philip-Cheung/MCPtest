@@ -21,11 +21,13 @@ export function useDateRange(initialPreset = DEFAULT_DATE_RANGE, onDateRangeChan
     if (selectedPreset !== 'custom') {
       const range = getDateRange(selectedPreset);
       setCalculatedRange(range);
-      if (range && onDateRangeChange) {
-        onDateRangeChange(range);
+      // Don't apply date filtering for presets - they only change data display
+      if (onDateRangeChange) {
+        onDateRangeChange(null);
       }
     } else if (customRange) {
       setCalculatedRange(customRange);
+      // Only apply date filtering for custom ranges
       if (onDateRangeChange) {
         onDateRangeChange(customRange);
       }
