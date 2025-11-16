@@ -1,14 +1,7 @@
 /**
  * BuildingMetricsTable - Displays detailed metrics for an expanded building row
+ * Uses grid layout to align with parent table columns
  */
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../ui/table";
 import { IndicatorDot } from "../shared/IndicatorDot";
 
 export function BuildingMetricsTable({ building, dateRange = "30days" }) {
@@ -17,54 +10,43 @@ export function BuildingMetricsTable({ building, dateRange = "30days" }) {
     ? building.metricsByPeriod[dateRange] 
     : building.metrics;
 
+  const allMetrics = [
+    ...metrics.airQuality.map(m => ({ ...m, category: 'Air Quality' })),
+    ...metrics.thermalComfort.map(m => ({ ...m, category: 'Thermal Comfort' }))
+  ];
+
   return (
-    <Table>
-      <TableHeader>
-        <TableRow className="hover:bg-transparent border-b">
-          <TableHead className="font-semibold text-foreground px-4 py-2">Metric</TableHead>
-          <TableHead className="font-semibold text-foreground px-4 py-2">Target</TableHead>
-          <TableHead className="font-semibold text-foreground px-4 py-2">% Time In Targets</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {metrics.airQuality.map((metric) => (
-          <TableRow key={metric.name} className="hover:bg-transparent">
-            <TableCell className="px-4 py-2">
-              <div>
-                <div className="font-medium text-foreground">
-                  {metric.name}
-                </div>
-                <div className="text-xs text-muted-foreground">
-                  Air Quality
-                </div>
-              </div>
-            </TableCell>
-            <TableCell className="px-4 py-2 text-foreground">{metric.target}</TableCell>
-            <TableCell className="px-4 py-2">
+    <div className="w-full">
+      {/* Header row - aligns with parent table columns */}
+      <div className="grid grid-cols-[40px_1fr_auto_1fr_auto_auto] gap-4 border-b border-border pb-2 mb-2">
+        <div></div> {/* Chevron column spacer */}
+        <div className="px-4 font-semibold text-foreground">Metric</div>
+        <div></div> {/* Spaces column spacer */}
+        <div className="px-4 font-semibold text-foreground">Target</div>
+        <div className="px-4 font-semibold text-foreground col-span-2">% Time In Targets</div>
+      </div>
+      
+      {/* Metric rows - align with parent table columns */}
+      <div className="space-y-1">
+        {allMetrics.map((metric) => (
+          <div 
+            key={`${metric.category}-${metric.name}`}
+            className="grid grid-cols-[40px_1fr_auto_1fr_auto_auto] gap-4 py-2 hover:bg-muted/30 rounded"
+          >
+            <div></div> {/* Chevron column spacer */}
+            <div className="px-4">
+              <div className="font-medium text-foreground">{metric.name}</div>
+              <div className="text-xs text-muted-foreground">{metric.category}</div>
+            </div>
+            <div></div> {/* Spaces column spacer */}
+            <div className="px-4 text-foreground">{metric.target}</div>
+            <div className="px-4 col-span-2">
               <IndicatorDot value={metric.timeInTarget} />
-            </TableCell>
-          </TableRow>
+            </div>
+          </div>
         ))}
-        {metrics.thermalComfort.map((metric) => (
-          <TableRow key={metric.name} className="hover:bg-transparent">
-            <TableCell className="px-4 py-2">
-              <div>
-                <div className="font-medium text-foreground">
-                  {metric.name}
-                </div>
-                <div className="text-xs text-muted-foreground">
-                  Thermal Comfort
-                </div>
-              </div>
-            </TableCell>
-            <TableCell className="px-4 py-2 text-foreground">{metric.target}</TableCell>
-            <TableCell className="px-4 py-2">
-              <IndicatorDot value={metric.timeInTarget} />
-            </TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+      </div>
+    </div>
   );
 }
 
