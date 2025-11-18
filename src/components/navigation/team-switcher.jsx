@@ -36,7 +36,7 @@ export function TeamSwitcher({ teams }) {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                <Logo className="size-4" />
+                <Logo className="size-3" />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{activeTeam.name}</span>
@@ -51,7 +51,7 @@ export function TeamSwitcher({ teams }) {
             side={isMobile ? "bottom" : "right"}
             sideOffset={4}
           >
-            <DropdownMenuLabel className="text-muted-foreground text-xs">
+            <DropdownMenuLabel className="text-foreground text-xs font-medium">
               Teams
             </DropdownMenuLabel>
             {teams.map((team, index) => {
@@ -60,10 +60,10 @@ export function TeamSwitcher({ teams }) {
                 <DropdownMenuItem
                   key={team.name}
                   onClick={() => setActiveTeam(team)}
-                  className="gap-2 p-2"
+                  className="gap-3 p-2"
                 >
                   <div className="flex size-6 items-center justify-center rounded-md border">
-                    <TeamLogo className="size-3.5 shrink-0" />
+                    <TeamLogo className="size-3 shrink-0" />
                   </div>
                   {team.name}
                   <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
@@ -71,11 +71,11 @@ export function TeamSwitcher({ teams }) {
               );
             })}
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="gap-2 p-2">
+            <DropdownMenuItem className="gap-3 p-2">
               <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
-                <Plus className="size-4" />
+                <Plus className="size-3 text-foreground" />
               </div>
-              <div className="text-muted-foreground font-medium">Add team</div>
+              <div className="text-foreground font-medium">Add organization</div>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
