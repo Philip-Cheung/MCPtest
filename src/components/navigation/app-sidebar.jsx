@@ -16,6 +16,7 @@ import {
 import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
 import { TeamSwitcher } from "./team-switcher";
+import { QuickCreate } from "./quick-create";
 import {
   Sidebar,
   SidebarContent,
@@ -31,11 +32,9 @@ const data = {
     avatar: "/avatars/shadcn.jpg",
   },
   teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
+    { name: "Acme Inc", logo: GalleryVerticalEnd, plan: "Enterprise" },
+    { name: "Acme Corp.", logo: Building2, plan: "Pro" },
+    { name: "Evil Corp.", logo: Settings, plan: "Starter" },
   ],
 };
 
@@ -77,9 +76,10 @@ export function AppSidebar({ alertCount = 0, ...props }) {
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
+        <QuickCreate />
         <NavMain items={monitorItems} label="Monitor" />
-        <NavMain items={managementItems} label="Management" collapsible sectionIcon={FolderCog} />
-        <NavMain items={adminItems} label="Admin" collapsible sectionIcon={Wrench} />
+        <NavMain items={managementItems} label="Management" />
+        <NavMain items={adminItems} label="Admin" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
