@@ -23,10 +23,25 @@ export function BuildingsTable() {
   const { filters, updateFilter } = useFilters({ wellCompliance: "all" });
   const { isExpanded, toggle: toggleRow } = useExpandable();
 
+  // Apply time-variant data based on selected date range
+  const buildingsWithTimeData = useMemo(() => {
+    return buildings.map(building => {
+      if (building.dataByPeriod && building.dataByPeriod[dateRange]) {
+        const periodData = building.dataByPeriod[dateRange];
+        return {
+          ...building,
+          airQuality: periodData.airQuality,
+          thermalComfort: periodData.thermalComfort,
+        };
+      }
+      return building;
+    });
+  }, [dateRange]);
+
   // Apply filters
   const filteredData = useMemo(() => {
-    return filterBuildings(buildings, filters, searchQuery, dateRangeValue);
-  }, [searchQuery, filters, dateRangeValue]);
+    return filterBuildings(buildingsWithTimeData, filters, searchQuery, dateRangeValue);
+  }, [buildingsWithTimeData, searchQuery, filters, dateRangeValue]);
 
   // Use pagination hook
   const {
@@ -80,6 +95,7 @@ export function BuildingsTable() {
                   building={building}
                   isExpanded={isExpanded(building.id)}
                   onToggle={toggleRow}
+                  dateRange={dateRange}
                 />
               ))
             )}
